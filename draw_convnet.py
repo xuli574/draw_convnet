@@ -49,7 +49,7 @@ Darker = 0.15
 Black = 0.
 
 
-def add_layer(patches, colors, size=(24, 24), num=5,
+def add_layer(patches, colors, size=(24, 24), num=3,
               top_left=[0, 0],
               loc_diff=[3, -3],
               ):
@@ -155,8 +155,8 @@ if __name__ == '__main__':
 
     ############################
     # conv layers
-    size_list = [(32, 32), (18, 18), (10, 10), (6, 6), (4, 4)]
-    num_list = [3, 32, 32, 48, 48]
+    size_list = [(4, 1), (16, 3), (2, 1)]
+    num_list = [1, 120, 120]
     x_diff_list = [0, layer_width, layer_width, layer_width, layer_width]
     text_list = ['Inputs'] + ['Feature\nmaps'] * (len(size_list) - 1)
     loc_diff_list = [[3, -3]] * len(size_list)
@@ -200,7 +200,7 @@ if __name__ == '__main__':
     ############################
     # fully connected layers
     size_list = [(fc_unit_size, fc_unit_size)] * 3
-    num_list = [768, 500, 2]
+    num_list = [384, 384, 1]
     num_show_list = list(map(min, num_list, [NumFcMax] * len(num_list)))
     x_diff_list = [sum(x_diff_list) + layer_width, layer_width, layer_width]
     top_left_list = np.c_[np.cumsum(x_diff_list), np.zeros(len(x_diff_list))]
